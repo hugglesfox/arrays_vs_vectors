@@ -1,0 +1,45 @@
+{{> components/header pretitle="Act III" title="For Loops" subtitle="<s>aka The better while</s>" }}
+
+{{#> components/section }}
+{{#> components/content title="Iterating iterables." }}
+<p class="block">
+  Repeating code for each item in an array/vector is exactly what for loops are designed for.
+</p>
+<p class="block">
+  There are 2 main types of for loops in C++ for loops and for each loops.
+<p>
+<table class="table is-hoverable is-fullwidth">
+  <tbody>
+    <tr>
+      <td>For</td>
+      <td>Modifies a variable until a condition is met.</td>
+    </tr>
+    <tr>
+      <td>For each</td>
+      <td>Gets each element in an iterable (array, vector, etc).</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  Which variant you use depends on what your trying to achieve.
+</p>
+{{/components/content}}
+{{#> components/aside }}
+<pre>
+  <code class="cpp">
+    vector&lt;int&gt; numbers = {0, 1, 1, 3, 4};
+
+    // Conventional C++ for loop
+    for (int i = 0; i &lt; numbers.size(); i++) {
+      cout &lt;&lt; numbers[i];
+    }
+
+    // C++ for each loop
+    for (int n : numbers) {
+      cout &lt;&lt; n;
+    }
+  </code>
+</pre>
+{{/components/aside}}
+{{/components/section}}
+

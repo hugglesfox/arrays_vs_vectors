@@ -1,0 +1,126 @@
+{{> components/header title="Vectors" pretitle="Act II" subtitle="aka Dynamic Contiguous Arrays"}}
+
+{{#> components/section }}
+{{#> components/content title="Making things more <em>Dynamic.</em>" }}
+<p>
+  So we need to create an array where we don't need to know what it's size is at compile time. Enter the vector.
+</p>
+{{/components/content}}
+{{#> components/aside }}
+<pre>
+  <code class="cpp">
+    vector&lt;int&gt; numbers = {0, 1, 1, 3, 4};
+  </code>
+</pre>
+{{/components/aside}}
+{{/components/section}}
+
+{{#> components/section }}
+{{#> components/content title="Well kinda..." }}
+<p>
+  Internally, vectors work much the same way as arrays do. By knowing the size of each item and how many items there are, it's able to allocate the correct amount of memory as well as know where each item is.
+</p>
+{{/components/content}}
+{{#> components/aside }}
+<pre>
+  <code class="plaintext">
+    <i>item</i> = <i>num</i> * <i>item_length</i> + <i>array_start</i>
+  </code>
+</pre>
+{{/components/aside}}
+{{/components/section}}
+
+{{#> components/section centered=true }}
+{{#> components/content title="So what's the difference?" }}
+<p class="block">
+  There is one 1  main difference between an array and a vector:
+</p>
+<p class="block">
+  Vectors know their own size.
+</p>
+
+<hr>
+
+<p class="block">
+  Lets compare resizing arrays and vectors:
+</p>
+
+<p class="subtitle">Arrays</p>
+<ol class="has-text-left block">
+  <li>Array size is calculated at compile time.</li>
+  <li>We add another item to the array.</li>
+  <li>The array size was calculated at compile time...</li>
+  <li>The array doesn't know it got any bigger...</li>
+  <li>If there wasn't enough free space, we just overwrote something...</li>
+  <li>Cry...</li>
+</ol>
+
+<p class="subtitle">Vectors</p>
+<ol class="has-text-left">
+  <li>Vector size is stored.</li>
+  <li>We add another item to the vector.</li>
+  <li>Increment the item count.</li>
+  <li>If there isn't enough space, no problem we know where the vector starts and it's size so we can just move it to somewhere where there is enough free memory.</li>
+  <li>Vectors are awesome!</li>
+</ol>
+{{/components/content}}
+{{/components/section}}
+
+{{#> components/section dark=true }}
+{{#> components/content title="A word on stacks." }}
+<p class="block">
+  Due to the nature of how vectors are stored in memory, we can only append or remove items from the end of the vector. This makes vectors very similar to what computer scientists like to call a "stack".
+</p>
+<p class="block">
+  A nice easy way to visualise a stack is to think of them as a tower of blocks with a stick running up the center of them to make sure they are all aligned so you can only remove one block at a time from the top of the tower. If you had to remove an item from somewhere other then the end of the stack you would have to remove all the blocks above it, remove the wanted block then put all the blocks which were above it back on. Adding a block in the middle of the stack involves much the same procedure.
+</p>
+<p class="block">
+  Removing something from a stack is known as popping it off the stack and adding something to a stack is known as pushing it into the stack. Hence  why C++ uses the methods <code>push_back()</code> and <code>pop_back()</code> to manipulate vectors.
+</p>
+{{/components/content}}
+{{#> components/aside }}
+<pre>
+  <code class="plaintext">
+         |
+        *|*  &lt;-- Top item
+       **|**
+      ***|***
+     ****|****
+    *****|*****
+   ******|******
+  *******|*******  &lt;-- Bottom item
+ =================
+  </code>
+</pre>
+{{/components/aside}}
+{{/components/section}}
+
+{{#> components/section }}
+{{#> components/content title="Accessing all the data." }}
+<p class="block">
+  So we can store everything we could possibly need (until we run out of memory) by what about accessing that data?
+</p>
+<p class="block">
+  Currently if we wanted to print all the items in our vector then we need to manually index and print each element.
+</p>
+<p class="block">
+  <em>Eww...</em>
+</p>
+<p>
+  Lets fix that.
+</p>
+{{/components/content}}
+{{#> components/aside }}
+<pre>
+  <code class="cpp">
+    cout &lt;&lt; numbers[0];
+    cout &lt;&lt; numbers[1];
+    cout &lt;&lt; numbers[2];
+    cout &lt;&lt; numbers[3];
+    cout &lt;&lt; numbers[4];
+        ...
+  </code>
+</pre>
+{{/components/aside}}
+{{/components/section}}
+
