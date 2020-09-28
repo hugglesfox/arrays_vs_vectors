@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arrays and Vectors</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="bundle.js"></script>
+    <base target="_blank" rel="noopener noreferrer">
+  </head>
+  <body>
+    <section class="hero is-large is-black">
+      <div class="hero-body">
+        <div class="container">
+          <p class="subtitle">
+            C++ presents:
+          </p>
+          <h1 class="title is-2">
+            Arrays and Vectors
+          </h1>
+          <p class="subtitle">
+            &nbsp;&nbsp; A tale of storing lots of data.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <p class="subtitle">Act I</p>
+          <h1 class="title is-1">Arrays</h1>
+          <p class="subtitle">&nbsp;&nbsp; aka Static Arrays</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">The humble array.</h1>
+                <p class="block">
+                  Dynamically creating variables isn't a thing in a lot of programming languages but, you still want a nice way of storing lots of items? Arrays sound like the data type for you!
+                </p>
+                <p class="block">
+                  Arrays are primitive data types which allows one to store multiple values of the same type using a single variable.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="cpp">
+                    int numbers[] = {0, 1, 1, 3, 4};
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container  has-text-centered ">
+          <div class="columns  is-centered ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Wait how does it do that?</h1>
+                <p>
+                  To be able to store multiple items, we need to be able to keep track of multiple locations in memory right? And you would be right.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Static typing to the rescue!</h1>
+                <p>
+                  In order to solve this we can use the fact that all types in C++ have a known size at compile time in order to work out where each element is stored from a starting address by just multiplying the length of each element by a number to give you a memory offset. So 0 would get our first item, 1 the second and so on...
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="plaintext">
+                    <i>item</i> = <i>num</i> * <i>item_length</i> + <i>array_start</i>
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Putting it together.</h1>
+                <p>
+                  The same formula can be used for allocating a block of memory for an array. We can multiply the amount of items in the array with the size of each element to work out the over all size of the array. This means the size of an array must be known at compile time.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="plaintext">
+                    <i>array_length</i> = <i>item_count</i> * <i>item_length</i>
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium  is-light ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">The subscript operator.</h1>
+                <p class="block">
+                  Getting an element from an array or vector by using a number is so common in programming it has it's own name, the index. So the first item in an array is said to have the index of 0. In many languages we can use what's known as the subscript operator to get an element of a certain index as shown.
+                </p>
+                <p class="block">
+                  The same syntax can be used along with the assignment operator to assign values to indexes in the array.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="cpp">
+                    numbers[0];  // Indexes the 0th item
+                    numbers[0] = 42;  // Assigns the 0th item to 42
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container  has-text-centered ">
+          <div class="columns  is-centered ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">So why do dynamic arrays exist?</h1>
+                <p class="block">
+                  Alright we can store lots of data, we just need to know the size of everything at compile time! Well done everyone lets all go home and congratulate ourselves for a job well done.
+                </p>
+                
+                <blockquote class="block">
+                  <p>
+                    "But wait!"
+                  </p>
+                </blockquote>
+                
+                <p class="block">
+                  I here you say; What if we don't know how many elements the array is going to store? Like um... What if we were reading a CSV file or asking for user input? There's no way to know how big the CSV file is or how many items the user will input at compile time!?
+                </p>
+                
+                <p class="block">
+                  <a href="https://youtu.be/wf-BqAjZb8M?t=1383">
+                    <em>*Thumps table*</em> <br>
+                    There must be a better way!
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="hero is-small is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <p class="subtitle">Act II</p>
+          <h1 class="title is-1">Vectors</h1>
+          <p class="subtitle">&nbsp;&nbsp; aka Dynamic Contiguous Arrays</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Making things more <em>Dynamic.</em></h1>
+                <p>
+                  So we need to create an array where we don't need to know what it's size is at compile time. Enter the vector.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="cpp">
+                    vector&lt;int&gt; numbers = {0, 1, 1, 3, 4};
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Well kinda...</h1>
+                <p>
+                  Internally, vectors work much the same way as arrays do. By knowing the size of each item and how many items there are, it's able to allocate the correct amount of memory as well as know where each item is.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="plaintext">
+                    <i>item</i> = <i>num</i> * <i>item_length</i> + <i>array_start</i>
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container  has-text-centered ">
+          <div class="columns  is-centered ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">So what's the difference?</h1>
+                <p class="block">
+                  There is one 1  main difference between an array and a vector:
+                </p>
+                <p class="block">
+                  Vectors know their own size.
+                </p>
+                
+                <hr>
+                
+                <p class="block">
+                  Lets compare resizing arrays and vectors:
+                </p>
+                
+                <p class="subtitle">Arrays</p>
+                <ol class="has-text-left block">
+                  <li>Array size is calculated at compile time.</li>
+                  <li>We add another item to the array.</li>
+                  <li>The array size was calculated at compile time...</li>
+                  <li>The array doesn't know it got any bigger...</li>
+                  <li>If there wasn't enough free space, we just overwrote something...</li>
+                  <li>Cry...</li>
+                </ol>
+                
+                <p class="subtitle">Vectors</p>
+                <ol class="has-text-left">
+                  <li>Vector size is stored.</li>
+                  <li>We add another item to the vector.</li>
+                  <li>Increment the item count.</li>
+                  <li>If there isn't enough space, no problem we know where the vector starts and it's size so we can just move it to somewhere where there is enough free memory.</li>
+                  <li>Vectors are awesome!</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium  is-light ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">A word on stacks.</h1>
+                <p class="block">
+                  Due to the nature of how vectors are stored in memory, we can only append or remove items from the end of the vector. This makes vectors very similar to what computer scientists like to call a "stack".
+                </p>
+                <p class="block">
+                  A nice easy way to visualise a stack is to think of them as a tower of blocks with a stick running up the center of them to make sure they are all aligned so you can only remove one block at a time from the top of the tower. If you had to remove an item from somewhere other then the end of the stack you would have to remove all the blocks above it, remove the wanted block then put all the blocks which were above it back on. Adding a block in the middle of the stack involves much the same procedure.
+                </p>
+                <p class="block">
+                  Removing something from a stack is known as popping it off the stack and adding something to a stack is known as pushing it into the stack. Hence  why C++ uses the methods <code>push_back()</code> and <code>pop_back()</code> to manipulate vectors.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="plaintext">
+                         |
+                        *|*  &lt;-- Top item
+                       **|**
+                      ***|***
+                     ****|****
+                    *****|*****
+                   ******|******
+                  *******|*******  &lt;-- Bottom item
+                 =================
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Accessing all the data.</h1>
+                <p class="block">
+                  So we can store everything we could possibly need (until we run out of memory) by what about accessing that data?
+                </p>
+                <p class="block">
+                  Currently if we wanted to print all the items in our vector then we need to manually index and print each element.
+                </p>
+                <p class="block">
+                  <em>Eww...</em>
+                </p>
+                <p>
+                  Lets fix that.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="cpp">
+                    cout &lt;&lt; numbers[0];
+                    cout &lt;&lt; numbers[1];
+                    cout &lt;&lt; numbers[2];
+                    cout &lt;&lt; numbers[3];
+                    cout &lt;&lt; numbers[4];
+                        ...
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-small is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <p class="subtitle">Act III</p>
+          <h1 class="title is-1">For Loops</h1>
+          <p class="subtitle">&nbsp;&nbsp; <s>aka The better while</s></p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container ">
+          <div class="columns ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Iterating iterables.</h1>
+                <p class="block">
+                  Repeating code for each item in an array/vector is exactly what for loops are designed for.
+                </p>
+                <p class="block">
+                  There are 2 main types of for loops in C++ for loops and for each loops.
+                <p>
+                <table class="table is-hoverable is-fullwidth">
+                  <tbody>
+                    <tr>
+                      <td>For</td>
+                      <td>Modifies a variable until a condition is met.</td>
+                    </tr>
+                    <tr>
+                      <td>For each</td>
+                      <td>Gets each element in an iterable (array, vector, etc).</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>
+                  Which variant you use depends on what your trying to achieve.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="container">
+                <pre>
+                  <code class="cpp">
+                    vector&lt;int&gt; numbers = {0, 1, 1, 3, 4};
+                
+                    // Conventional C++ for loop
+                    for (int i = 0; i &lt; numbers.size(); i++) {
+                      cout &lt;&lt; numbers[i];
+                    }
+                
+                    // C++ for each loop
+                    for (int n : numbers) {
+                      cout &lt;&lt; n;
+                    }
+                  </code>
+                </pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-small is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <p class="subtitle">Act VI</p>
+          <h1 class="title is-1">Conclusion</h1>
+          <p class="subtitle">&nbsp;&nbsp; The epic conclusion</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-medium ">
+      <div class="hero-body">
+        <div class="container  has-text-centered ">
+          <div class="columns  is-centered ">
+            <div class="column is-one-third">
+              <div class="container">
+                <h1 class="title">Arrays or vectors, which should I use?</h1>
+                <p class="block">
+                  So now we know how arrays and vectors work, when should one use one or the other?
+                </p>
+                <p class="block">
+                  In general if you can't chose between an array and a vector, go with a vector. They are a lot easier to work with as they provide a lot more flexibility at little to no performance hit over an array. There are use cases where an array is the best tool for the job such as situations where the array doesn't need to change after compile time but those use cases are few and far between.
+                </p>
+                <p class="block">
+                  TL;DR: You'll know when you need an array, otherwise just use a vector.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          &#169; Hayley Hughes 2020
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
